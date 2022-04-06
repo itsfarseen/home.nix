@@ -33,7 +33,7 @@ in {
     script = "PATH=$PATH:${pkgs.i3-gaps}/bin polybar main &";
     settings = rec {
       colors = {
-        background = "#88000000";
+        background = "#ee000000";
         background-alt  = "#88222222";
         foreground = "#efefef";
         foreground-alt = "#aaaaaa";
@@ -47,11 +47,10 @@ in {
         width = "100%";
         dpi = 140;
         height = 32;
-        # radius = 5.0;
         fixed-center = true;
-        #tray-detached = ;
-        #wm-restack = "i3";
-        #override-redirect = true;
+        wm-restack = "i3";
+        override-redirect = true;
+        #bottom = true;
 
         background = colors.background;
         foreground = colors.foreground;
@@ -61,8 +60,7 @@ in {
         module-margin = { left = 1; right = 2; };
 
         # border = {
-        #   size = 10;
-        #   bottom.size = 0;
+        #   size = 5;
         #   color = "#00000000";
         # };
 
@@ -79,7 +77,10 @@ in {
 
         tray = {
           position = "right";
+          #detached = true;
+          #offset-x = -600;
           padding = 5;
+          forground = colors.foreground;
         };
       };
 

@@ -10,13 +10,14 @@
     name = "capitaine-cursors-white";
   };
   gtk.iconTheme = {
-    package = pkgs.breeze-icons;
-    name = "breeze-dark";
+    package = pkgs.arc-icon-theme;
+    name = "Arc";
   };
   gtk.theme = {
-    package = pkgs.breeze-gtk;
-    name = "Breeze-Dark";
+    package = (pkgs.callPackage ./arc-black.nix {});
+    name = "Arc-BLACK";
   };
+  gtk.font = {name= "Liberation Sans"; size = 11;};
   qt.enable = true;
   qt.style = {
     name = "qt5ct";

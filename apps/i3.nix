@@ -139,10 +139,13 @@ in {
         };
       };
 
+      gaps.inner = 5;
+      gaps.top = 32;
+
       colors =
         let
-          focused = "#0b70c0";
-          unfocused = "#333333";
+          focused = "#45c482";
+          unfocused = "#111111";
           text = "#000000";
           indicator = "#333333";
           fn = col: {
