@@ -5,17 +5,19 @@ let
   #pkgsx = nixpkgs_unstable.pkgs;
 in {
   imports = [
-    ./alacritty.nix 
+    ./apps/alacritty.nix 
+    ./apps/i3.nix
+    ./apps/polybar.nix
+    ./apps/neovim
+    ./apps/rofi
+    ./apps/sxhkd.nix
+    ./apps/picom.nix
     ./fonts.nix
-    ./picom.nix
-    ./neovim
-    ./polybar.nix
     ./dev.nix
     ./xsettingsd.nix
-    ./i3.nix
-    ./sxhkd.nix
     ./mold.nix
     ./nix-direnv.nix
+    ./themes.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -88,8 +90,11 @@ in {
     vim = "nvim";
     gst = "git status";
     gcv = "git commit -v";
+    gce = "git commit --amend";
     gps = "git push";
     gpl = "git pull";
+    gd = "git diff";
+    gds = "git diff --staged";
     hms = "home-manager switch";
     nxsw = "sudo nixos-rebuild switch";
     nxs = "nix search nixpkgs";

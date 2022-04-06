@@ -10,7 +10,6 @@ in {
     WINIT_X11_SCALE_FACTOR = 1.25;
     GDK_SCALE_FACTOR = 1.25;
     QT_SCALE_FACTOR = 1.25;
-    QT_QPA_PLATFORM_THEME = "qt5ct";
   };
   xsession.scriptPath = ".xsession-hm";
   xsession.preferStatusNotifierItems = true;
@@ -48,31 +47,7 @@ in {
     package = pkgs.capitaine-cursors;
     name = "capitaine-cursors-white";
   };
-  gtk.enable = true;
-  gtk.cursorTheme = {
-    package = pkgs.capitaine-cursors;
-    name = "capitaine-cursors-white";
-  };
-  gtk.iconTheme = {
-    package = pkgs.breeze-icons;
-    name = "breeze-dark";
-  };
-  gtk.theme = {
-    package = pkgs.breeze-gtk;
-    name = "Breeze-Dark";
-  };
-  qt.enable = true;
-  qt.style = {
-    name = "qt5ct";
-  };
 
-  programs.rofi = {
-    enable = true;
-    theme = ./rofi.rasi;
-    extraConfig = {
-      modi = "drun,ssh";
-    };
-  };
   xsession.windowManager.i3 = {
     enable = true;
     package = pkgs.i3-gaps;
