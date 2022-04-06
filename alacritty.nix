@@ -17,7 +17,7 @@
         multiplier = 3;
       };
       font = {
-        size = 11.5;
+        size = 13;
         normal.family = "Iosevka";
       };
       key_bindings = [

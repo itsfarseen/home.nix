@@ -125,9 +125,9 @@ in {
 
         "${mod}+f" = "fullscreen toggle";
 
-        "${mod}+Comma" = "layout stacking";
-        "${mod}+Period" = "layout tabbed";
-        "${mod}+Slash" = "layout toggle split";
+        "${mod}+comma" = "layout stacking";
+        "${mod}+period" = "layout tabbed";
+        "${mod}+slash" = "layout toggle split";
 
         "${mod}+Shift+space" = "floating toggle";
         "${mod}+space" = "focus mode_toggle";
@@ -144,24 +144,21 @@ in {
         "${mod}+r" = "mode resize";
 
         "${mod}+q" = "kill";
-        "${mod}+w" = "exec chromium";
-        "${mod}+e" = "exec pcmanfm";
-        "${mod}+Return" = "exec alacritty";
         "${mod}+d" = "exec rofi -show drun -show-icons";
 
         "${mod}+z" = "workspace back_and_forth";
         "${mod}+Shift+z" = "move container to workspace back_and_forth";
 
-        "${mod}+g" = "gaps inner current plus 10";
-        "${mod}+Shift+g" = "gaps inner current minus 10";
+        "${mod}+g" = "gaps inner current plus 5";
+        "${mod}+Shift+g" = "gaps inner current minus 5";
       };
 
       modes = {
         resize = {
-          Left = "resize shrink width";
-          Right = "resize grow width";
-          Down = "resize shrink height";
-          Up = "resize grow height";
+          Left = "resize shrink width 10";
+          Right = "resize grow width 10";
+          Down = "resize shrink height 10";
+          Up = "resize grow height 10";
           Return = "mode default";
           Escape = "mode default";
         };

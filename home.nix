@@ -10,10 +10,12 @@ in {
     ./picom.nix
     ./neovim
     ./polybar.nix
-    ./haskell.nix
+    ./dev.nix
     ./xsettingsd.nix
     ./i3.nix
     ./sxhkd.nix
+    ./mold.nix
+    ./nix-direnv.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -31,6 +33,7 @@ in {
   programs.tmux = {
     enable = true;
   };
+  programs.starship.enable = true;
   programs.git = {
     enable = true;
     ignores = [ "*~" "*.swp" ];
@@ -42,32 +45,22 @@ in {
     };
   };
 
-  # programs.neovim = {
-  #   enable = true;
-  #   vimAlias = true;
-  #   vimdiffAlias = true;
-  # };
-
-  # nixpkgs.overlays = [
-  #   (self: super: {
-  #     chromium = super.chromium.override {
-  #       commandLineArgs = [ "--ozone-platform-hint=auto" ];
-  #     };
-  #   })
-  # ];
-
   home.packages = with pkgs; [
+    acpilight
     discord
     slack
+    tdesktop
     chromium
     firefox
     spotify
-    sumneko-lua-language-server
+    ytmdesktop
     libreoffice
     keepassxc
     pcmanfm
+    ferdi
+    flameshot
+    yt-dlp
     # 
-    gcc
     moreutils # sponge
   ];
 
@@ -80,7 +73,6 @@ in {
     };
   };
 
-
   xdg.configFile = {
     "discord/settings.json" = {
       force = true;
@@ -91,6 +83,22 @@ in {
       '';
     };
   };
+
+  home.shellAliases = {
+    vim = "nvim";
+    gst = "git status";
+    gcv = "git commit -v";
+    gps = "git push";
+    gpl = "git pull";
+    hms = "home-manager switch";
+    nxsw = "sudo nixos-rebuild switch";
+    nxs = "nix search nixpkgs";
+  };
+
+  services.parcellite.enable = true;
+  services.poweralertd.enable = true;
+  services.kdeconnect.enable = true;
+  services.kdeconnect.indicator = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

@@ -7,7 +7,7 @@
     shadowOffsets = [ (-9) (-8) ];
     shadowOpacity = "0.3";
     blur = true;
-    menuOpacity = "0.8";
+    menuOpacity = "0.6";
     extraOptions = ''
       #corner-radius = 10.0;
       shadow-radius = 10;
@@ -16,7 +16,8 @@
       glx-no-stencil = true;
 
       opacity-rule = [
-        "90:class_g = 'Code'"
+        "90:class_g = 'Code'",
+        "90:class_g = 'Alacritty'"
       ];
 
       rounded-corners-exclude = [

@@ -50,6 +50,7 @@ require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 
 	use 'arkav/lualine-lsp-progress'
+	-- Lualine {{{
 	use {
 		'nvim-lualine/lualine.nvim',
 		requires = { 'kyazdani42/nvim-web-devicons', opt = true },
@@ -85,6 +86,7 @@ require("packer").startup(function(use)
 			}
 		end
 	}
+  --- }}}
 
 	-- File types
 	use({
@@ -110,29 +112,6 @@ require("packer").startup(function(use)
 	-- }}}
 
 	-- Color scheme {{{
-	-- use({
-	-- 	"Shatur/neovim-ayu",
-	-- 	config = function()
-	-- 		vim.cmd("colorscheme ayu")
-	-- 	end,
-	-- })
- --  use({
-	-- 	"navarasu/onedark.nvim",
-	-- 	config = function()
-	-- 		require('onedark').setup {
-	-- 			transparent = true,
-	-- 			--style = 'darker'
-	-- 		}
-	-- 		require('onedark').load()
-	-- 	end
-	-- })
-	-- use({
-	-- 		'tiagovla/tokyodark.nvim',
-	-- 		config = function()
-	-- 			vim.g.tokyodark_transparent_background = true
-	-- 			vim.cmd("colorscheme tokyodark")
-	-- 		end
-	-- })
 	use({
 			'folke/tokyonight.nvim',
 			config = function()
@@ -142,7 +121,6 @@ require("packer").startup(function(use)
 				vim.cmd("colorscheme tokyonight")
 			end
 	})
-	--
 	-- }}}
 
 	-- Language Specific {{{
@@ -167,37 +145,18 @@ require("packer").startup(function(use)
 	use({ "akinsho/flutter-tools.nvim", requires = "nvim-lua/plenary.nvim" })
 	-- }}}
 
-	-- Formatting {{{
-	-- use({
-	-- 	"mhartington/formatter.nvim",
-	-- 	config = function()
-	-- 		vim.cmd([[
-	-- 			augroup FormatAutogroup
-	-- 			autocmd!
-	-- 			autocmd BufWritePost *.lua FormatWrite
-	-- 			augroup END
-	-- 		]])
-	-- 		require("formatter").setup({
-	-- 			filetype = {
-	-- 				lua = {
-	-- 					function()
-	-- 						return {
-	-- 							exe = "stylua",
-	-- 							args = {
-	-- 								-- "--config-path " .. os.getenv("XDG_CONFIG_HOME") .. "/stylua/stylua.toml",
-	-- 								"-",
-	-- 							},
-	-- 							stdin = true,
-	-- 						}
-	-- 					end,
-	-- 				},
-	-- 			},
-	-- 		})
-	-- 	end,
-	-- })
+	-- Handy extensions --
+
+	-- Buf Delete {{{ 
+	use({'famiu/bufdelete.nvim', 
+			config = function () 
+				vim.cmd([[
+					nnoremap <leader>x :Bdelete<CR>
+				]])
+			end
+	})
 	-- }}}
 
-	-- Handy extensions --
 
 	-- Git Signs {{{
 	use({
