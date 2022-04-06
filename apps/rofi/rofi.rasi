@@ -20,13 +20,13 @@
  */
 
 configuration {
-    font:                            "Iosevka Nerd Font 10";
+    font:                           "Iosevka Nerd Font 12";
     show-icons:                     true;
     icon-theme:                     "Papirus";
-    display-drun:                     "";
+    display-drun:                   "";
     drun-display-format:            "{name}";
     disable-history:                false;
-    sidebar-mode:                     false;
+    sidebar-mode:                   false;
 }
 
 window {
@@ -110,7 +110,6 @@ element-icon {
     size:                           24px;
     border:                         0px;
 }
-
 element-text {
     background-color:               @al;
     text-color:                     inherit;

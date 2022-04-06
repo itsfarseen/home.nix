@@ -64,6 +64,9 @@ in {
     yt-dlp
     # 
     moreutils # sponge
+    # 
+    gnome.eog
+    gnome.file-roller
   ];
 
   dconf = {

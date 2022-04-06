@@ -50,7 +50,23 @@ in {
 
   xsession.windowManager.i3 = {
     enable = true;
-    package = pkgs.i3-gaps;
+    package = pkgs.i3-gaps.overrideAttrs (oldAttrs: rec {
+      pname = "i3-gaps-rounded";
+      version = "4.20.2";
+      buildInputs = oldAttrs.buildInputs ++ [pkgs.pcre2];
+      src = pkgs.fetchFromGitHub {
+        owner = "jbenden";
+        repo = "i3-gaps-rounded";
+        rev = "6b18cdf3a40b733a173210aaef6c2a9490cb10de";
+        sha256 = "sha256-ROB/WSF3gM2MtnnEEPh2jBjk86uXqZ36fZWxB6+lpfA=";
+      };
+    });
+    extraConfig = ''
+      for_window [class=".*"] border pixel 0
+      gaps inner 10
+      gaps top 32
+      border_radius 5
+    '';
     config = let
       merge_list_of_sets = cfgs: builtins.foldl' (a: b: a//b) {} cfgs; 
       workspaces = {
@@ -139,13 +155,10 @@ in {
         };
       };
 
-      gaps.inner = 5;
-      gaps.top = 32;
-
       colors =
         let
           focused = "#45c482";
-          unfocused = "#111111";
+          unfocused = "#333333";
           text = "#000000";
           indicator = "#333333";
           fn = col: {
