@@ -5,7 +5,8 @@
   bg:  #000000ff;
   se:  #101010ff;
   fg:  #FFFFFFff;
-  ac:  #EC7875ff;
+  /* ac:  #EC7875ff; */
+  ac: #45c482ff;
 }
 
 /* style: https://github.com/adi1090x/rofi/blob/master/1080p/launchers/colorful/style_7.rasi */
@@ -35,8 +36,8 @@ window {
     text-color:                     @fg;
     border:                         0px;
     border-color:                   @ac;
-    border-radius:                  12px;
-    width:                          30%;
+    border-radius:                  5px;
+    width:                          35%;
     location:                       center;
     x-offset:                       0;
     y-offset:                       0;
@@ -57,7 +58,7 @@ entry {
     expand:                         true;
     horizontal-align:               0;
     placeholder:                    "Search";
-    padding:                        0.10% 0% 0% 0%;
+    padding:                        0.28% 0% 0% 0%;
     blink:                          true;
 }
 
@@ -75,9 +76,9 @@ inputbar {
 
 listview {
     background-color:               @al;
-    padding:                        10px;
+    padding:                        20px;
     columns:                        2;
-    lines:                          7;
+    lines:                          12;
     spacing:                        1%;
     cycle:                          false;
     dynamic:                        true;
@@ -107,7 +108,7 @@ element-icon {
     text-color:                     inherit;
     horizontal-align:               0.5;
     vertical-align:                 0.5;
-    size:                           24px;
+    size:                           32px;
     border:                         0px;
 }
 element-text {
@@ -123,6 +124,6 @@ element selected {
     background-color:               @ac;
     text-color:                     @bg;
     border:                         0% 0% 0% 0%;
-    border-radius:                  12px;
+    border-radius:                  5px;
     border-color:                   @bg;
 }
