@@ -15,7 +15,8 @@ in {
     ./fonts.nix
     ./dev.nix
     ./xsettingsd.nix
-    ./mold.nix
+     # ./mold.nix
+     ./lld.nix
     ./nix-direnv.nix
     ./themes.nix
     ./mime.nix
