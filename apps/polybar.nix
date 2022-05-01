@@ -69,7 +69,7 @@ in {
         modules = {
           left = "i3";
           center = "xwindow";
-          right = "filesystem xbacklight pulseaudio memory cpu wlan battery powermenu date time-utc time-ind";
+          right = "network filesystem xbacklight pulseaudio memory cpu wlan battery powermenu date time-ind";
         };
 
         tray = {
@@ -183,6 +183,15 @@ in {
         label = "%title:0:70:...%";
 
         format-underline = colors.primary;
+      };
+
+      "module/network" = {
+        type = "internal/network";
+        interface-type = "wireless";
+        interval = 1.0;
+        label = {
+          connected = "  %essid% %downspeed:10% %upspeed:10%";
+        };
       };
     };
   };
