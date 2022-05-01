@@ -18,6 +18,7 @@ in {
     ./mold.nix
     ./nix-direnv.nix
     ./themes.nix
+    ./mime.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -32,9 +33,6 @@ in {
   programs.z-lua.enable = true;
   programs.jq.enable = true;
   programs.fzf.enable = true;
-  programs.tmux = {
-    enable = true;
-  };
   programs.starship.enable = true;
   programs.git = {
     enable = true;
@@ -62,11 +60,18 @@ in {
     ferdi
     flameshot
     yt-dlp
+    pinta
+    gimp
     # 
     moreutils # sponge
     # 
     gnome.eog
     gnome.file-roller
+    evince
+    pulseaudio
+    # 
+    imagemagick
+    ghostscript
   ];
 
   dconf = {
