@@ -98,6 +98,7 @@ in {
 
   home.shellAliases = {
     vim = "nvim";
+    gs = "gst";
     gst = "git status";
     gcv = "git commit -v";
     gce = "git commit --amend";
