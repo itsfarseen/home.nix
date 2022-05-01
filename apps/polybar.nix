@@ -43,8 +43,8 @@ in {
       "bar/main" = {
         enable-ipc = true;
         width = "100%";
-        dpi = 140;
-        height = 32;
+        dpi = 120;
+        height = 36;
         fixed-center = true;
         wm-restack = "i3";
         override-redirect = true;
@@ -55,18 +55,16 @@ in {
 
         padding = { left = 0; right = 1; };
 
-        module-margin = { left = 1; right = 2; };
-
-        # border = {
-        #   size = 5;
-        #   color = "#00000000";
-        # };
+        module-margin = { left = 1; right = 4; };
 
         font = [
           #"Iosevka:size=8;3.8"
           "Public Sans Medium:size=9.0;1.7"
           "FontAwesome:size=10;2.6"
         ];
+
+        line-size = 3;
+        line-color = colors.primary;
 
         modules = {
           left = "i3";
@@ -91,9 +89,11 @@ in {
         };
         label = "%date%";
         format.prefix = {
-          text = " ";
+          text = "  ";
           foreground = colors.foreground-alt;
         };
+
+        format-underline = colors.primary;
       };
 
       "module/time-ind" = time-module "Asia/Kolkata" "IN";
@@ -121,10 +121,10 @@ in {
         pin-workspaces = true;
 
         label = {
-          mode = { text = "%mode%"; padding = 2; foreground = "#000000"; background = colors.primary-alt; };
-          focused = { text = "%index%"; padding = 1; foreground = "#000000"; background = colors.primary; };
-          unfocused = { text = "%index%"; padding = 1; };
-          urgent = { text = "%index%"; padding = 1; background = colors.alert; };
+          mode = { text = "%mode%"; padding = 2; foreground = "#000000"; background = colors.primary; };
+          focused = { text = "%index%"; padding = 2; foreground = "#000000"; background = colors.primary; };
+          unfocused = { text = "%index%"; padding = 2; };
+          urgent = { text = "%index%"; padding = 2; background = colors.alert; };
         };
       };
 
@@ -134,7 +134,7 @@ in {
         format = {
           volume = {
             text = "<label-volume>";
-            prefix = " ";
+            prefix = "  ";
             prefix-foreground = colors.foreground-alt; 
           };
           muted = {
@@ -159,13 +159,13 @@ in {
 
         format-discharging = "<ramp-capacity> <label-discharging>";
 
-        format-full-prefix = " ";
+        format-full-prefix = "  ";
         format-full-prefix-foreground = colors.foreground-alt;
 
-        ramp-capacity = [ "" "" "" "" ];
+        ramp-capacity = [ " " " " " " " " ];
         ramp-capacity-foreground = colors.foreground-alt;
 
-        animation-charging = [ "" "" "" ];
+        animation-charging = [ " " " " " " ];
 
         animation-charging-foreground = colors.foreground-alt;
         animation-charging-framerate = 750;
@@ -180,7 +180,9 @@ in {
 
       "module/xwindow" = {
         type = "internal/xwindow";
-        label = "%title:0:50:...%";
+        label = "%title:0:70:...%";
+
+        format-underline = colors.primary;
       };
     };
   };
