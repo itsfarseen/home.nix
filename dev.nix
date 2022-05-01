@@ -13,6 +13,7 @@
     haskell-language-server
     # Lua
     sumneko-lua-language-server
+    stylua
     # JS
     nodejs-16_x
     yarn
