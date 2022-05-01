@@ -12,6 +12,7 @@
       "super + e" = "pcmanfm";
       "super + w" = "chromium";
       "super + d" = "rofi -show drun -show-icons";
+      "super + F3" = "pavucontrol";
     };
   };
 }
