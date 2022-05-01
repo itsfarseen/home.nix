@@ -10,12 +10,12 @@
     name = "capitaine-cursors-white";
   };
   gtk.iconTheme = {
-    package = pkgs.arc-icon-theme;
-    name = "Arc";
+    package = pkgs.qogir-icon-theme;
+    name = "Qogir";
   };
   gtk.theme = {
-    package = (pkgs.callPackage ./arc-black.nix {});
-    name = "Arc-BLACK";
+    package = pkgs.qogir-theme;
+    name = "Qogir";
   };
   gtk.font = {name= "Liberation Sans"; size = 11;};
   qt.enable = true;
