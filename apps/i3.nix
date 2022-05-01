@@ -37,10 +37,8 @@ in {
 
   home.packages = with pkgs; [
     blueberry
-    lxappearance
     lxsession
     lxqt.lxqt-config
-    qt5ct
   ];
 
   xsession.pointerCursor = {
