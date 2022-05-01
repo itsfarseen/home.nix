@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
   home.sessionVariables = {
-    QT_QPA_PLATFORM_THEME = "qt5ct";
+    QT_QPA_PLATFORMTHEME = "qt5ct";
   };
 
   gtk.enable = true;
