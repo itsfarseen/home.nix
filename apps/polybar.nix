@@ -33,12 +33,10 @@ in {
     script = "PATH=$PATH:${pkgs.i3-gaps}/bin polybar main &";
     settings = rec {
       colors = {
-        background = "#ee000000";
-        background-alt  = "#88222222";
+        background = "#ff1D202F";
         foreground = "#efefef";
         foreground-alt = "#aaaaaa";
-        primary = "#45c482";
-        primary-alt = "#5d9478";
+        primary = "#7aa2f7";
         alert = "#ff0000";
       };
 
