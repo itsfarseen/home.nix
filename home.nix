@@ -12,6 +12,7 @@ in {
     ./apps/rofi
     ./apps/sxhkd.nix
     ./apps/picom.nix
+    ./apps/tmux.nix
     ./fonts.nix
     ./dev.nix
     ./xsettingsd.nix
