@@ -6,5 +6,7 @@
     inconsolata-nerdfont
     iosevka-bin
     font-awesome_4
+    open-sans
+    public-sans
   ];
 }

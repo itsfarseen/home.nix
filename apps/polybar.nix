@@ -63,8 +63,9 @@ in {
         # };
 
         font = [
-          "Iosevka:size=8;3.8"
-          "FontAwesome:size=9;3"
+          #"Iosevka:size=8;3.8"
+          "Public Sans Medium:size=9.0;1.7"
+          "FontAwesome:size=10;2.6"
         ];
 
         modules = {

@@ -17,7 +17,7 @@
     package = pkgs.qogir-theme;
     name = "Qogir";
   };
-  gtk.font = {name= "Liberation Sans"; size = 11;};
+  gtk.font = {name= "Public Sans"; size = 12;};
   qt.enable = true;
   qt.style = {
     name = "qt5ct";
