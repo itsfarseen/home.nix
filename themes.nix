@@ -8,6 +8,7 @@
   gtk.cursorTheme = {
     package = pkgs.capitaine-cursors;
     name = "capitaine-cursors-white";
+    size = 38;
   };
   gtk.iconTheme = {
     package = pkgs.qogir-icon-theme;
