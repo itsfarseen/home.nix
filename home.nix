@@ -22,6 +22,7 @@ in {
     ./themes.nix
     ./mime.nix
     ./aliases.nix
+    ./packages.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -47,35 +48,6 @@ in {
       init.defaultBranch = "main";
     };
   };
-
-  home.packages = with pkgs; [
-    acpilight
-    discord
-    slack
-    tdesktop
-    chromium
-    firefox
-    spotify
-    ytmdesktop
-    libreoffice
-    keepassxc
-    pcmanfm
-    ferdi
-    flameshot
-    yt-dlp
-    pinta
-    gimp
-    # 
-    moreutils # sponge
-    # 
-    gnome.eog
-    gnome.file-roller
-    evince
-    pulseaudio
-    # 
-    imagemagick
-    ghostscript
-  ];
 
   dconf = {
     enable = true;
