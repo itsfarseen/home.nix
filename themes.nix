@@ -22,4 +22,6 @@
   qt.style = {
     name = "qt5ct";
   };
+
+  home.file.".background-image".source = ./brady-bellini-WEQbe2jBg40-unsplash-adj.jpg;
 }
