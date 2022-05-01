@@ -1,14 +1,5 @@
 { config, pkgs, ... }:
 let
-  time-module = tz: label: {
-    type = "custom/script";
-    exec = "${pkgs.writeShellApplication { 
-      name = "utc-time";
-      runtimeInputs = [ pkgs.coreutils ];
-      text = "TZ=${tz} date +\"${label} %I:%M %p\"";
-    }}/bin/utc-time";
-    interval = 30;
-  };
 in {
   systemd.user.services.polybar.Service.ExecStartPost = "${pkgs.coreutils}/bin/sleep 1";
   services.polybar = {
@@ -29,7 +20,6 @@ in {
       i3GapsSupport = true;
       pulseSupport = true;
     };
-    #script = "polybar main &";
     script = "PATH=$PATH:${pkgs.i3-gaps}/bin polybar main &";
     settings = rec {
       colors = {
@@ -58,7 +48,6 @@ in {
         module-margin = { left = 1; right = 4; };
 
         font = [
-          #"Iosevka:size=8;3.8"
           "Public Sans Medium:size=9.0;1.7"
           "FontAwesome:size=10;2.6"
         ];
@@ -69,7 +58,7 @@ in {
         modules = {
           left = "i3";
           center = "xwindow";
-          right = "network filesystem xbacklight pulseaudio memory cpu wlan battery powermenu date time-ind";
+          right = "network filesystem xbacklight pulseaudio memory cpu wlan battery powermenu date time";
         };
 
         tray = {
@@ -89,18 +78,27 @@ in {
         };
         label = "%date%";
         format.prefix = {
-          text = "  ";
+          text = "  ";
           foreground = colors.foreground-alt;
         };
 
         format-underline = colors.primary;
       };
 
-      "module/time-ind" = time-module "Asia/Kolkata" "IN";
-      "module/time-utc" = time-module "UTC" "UK";
-      "module/time-ny" = time-module "America/New_York" "NY";
-      "module/time-wa" = time-module "US/Pacific" "WA";
-      "module/time-nz" = time-module "NZ" "NZ";
+      "module/time" = {
+        type = "internal/date";
+        interval = 5;
+        time = {
+          text = "%I:%M %p";
+        };
+        label = "%time%";
+        format.prefix = {
+          text = "  ";
+          foreground = colors.foreground-alt;
+        };
+
+        format-underline = colors.primary;
+      };
 
       "module/filesystem" = {
         type = "internal/fs";
