@@ -52,6 +52,9 @@ in {
     extraConfig = ''
       for_window [class=".*"] border pixel 0
       gaps top 36
+
+      for_window [class=".blueman-applet-wrapped" title="realme.*"] kill
+      for_window [class=".blueman-applet-wrapped" title="Connected"] kill
     '';
     config = let
       merge_list_of_sets = cfgs: builtins.foldl' (a: b: a//b) {} cfgs; 
