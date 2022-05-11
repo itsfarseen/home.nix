@@ -145,6 +145,25 @@ in {
         }
       ];
 
+      startup = [
+        { 
+          command = "systemctl --user restart polybar"; 
+          always = true;
+          notification = false;
+        }
+        { 
+          command = "systemctl --user restart picom"; 
+          always = true;
+          notification = false;
+        }
+        { 
+          command = "pkill -SIGUSR1 sxhkd"; 
+          always = true;
+          notification = false;
+        }
+      ];
+
+
       modes = {
         resize = {
           Left = "resize shrink width 10";
