@@ -131,7 +131,19 @@ in {
 
         "${mod}+g" = "gaps inner current plus 5";
         "${mod}+Shift+g" = "gaps inner current minus 5";
+
+        "${mod}+m" = "[class=\"TelegramDesktop\" title=\"^Telegram.*\"] scratchpad show";
       };
+
+      window.commands = [
+        {
+          criteria = {
+            class = "TelegramDesktop";
+            title = "^Telegram.*";
+          };
+          command = "move scratchpad";
+        }
+      ];
 
       modes = {
         resize = {
