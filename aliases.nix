@@ -13,5 +13,6 @@
     hms = "home-manager switch";
     nxsw = "sudo nixos-rebuild switch";
     nxs = "nix search nixpkgs";
+    cdg = "cd $(git rev-parse --show-toplevel)";
   };
 }
