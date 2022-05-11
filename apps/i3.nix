@@ -48,22 +48,11 @@ in {
 
   xsession.windowManager.i3 = {
     enable = true;
-    package = pkgs.i3-gaps.overrideAttrs (oldAttrs: rec {
-      pname = "i3-gaps-rounded";
-      version = "4.20.2";
-      buildInputs = oldAttrs.buildInputs ++ [pkgs.pcre2];
-      src = pkgs.fetchFromGitHub {
-        owner = "jbenden";
-        repo = "i3-gaps-rounded";
-        rev = "6b18cdf3a40b733a173210aaef6c2a9490cb10de";
-        sha256 = "sha256-ROB/WSF3gM2MtnnEEPh2jBjk86uXqZ36fZWxB6+lpfA=";
-      };
-    });
+    package = pkgs.i3-gaps; 
     extraConfig = ''
       for_window [class=".*"] border pixel 0
       gaps inner 10
       gaps top 32
-      border_radius 5
     '';
     config = let
       merge_list_of_sets = cfgs: builtins.foldl' (a: b: a//b) {} cfgs; 
