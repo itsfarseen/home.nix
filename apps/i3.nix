@@ -51,7 +51,6 @@ in {
     package = pkgs.i3-gaps; 
     extraConfig = ''
       for_window [class=".*"] border pixel 0
-      gaps inner 10
       gaps top 36
     '';
     config = let
