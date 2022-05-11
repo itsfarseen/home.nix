@@ -163,6 +163,15 @@ in {
         }
       ];
 
+      floating.criteria = [
+        { class="Pavucontrol"; }
+        { class="Lxappearance"; }
+        { class="Blueberry.pi"; }
+        { class=".blueman-manager-wrapped"; }
+        { title="Event Tester"; }
+        { class="KeePassXC"; }
+        { instance="nm-connection-editor"; }
+      ];
 
       modes = {
         resize = {
