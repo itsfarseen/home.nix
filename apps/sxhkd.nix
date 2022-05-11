@@ -13,6 +13,7 @@
       "super + w" = "chromium";
       "super + d" = "rofi -show drun -show-icons";
       "super + F3" = "pavucontrol";
+      "{XF86KbdBrightnessDown, XF86KbdBrightnessUp}" = "asusctl {-p,-n}";
     };
   };
 }
