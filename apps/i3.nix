@@ -52,7 +52,7 @@ in {
     extraConfig = ''
       for_window [class=".*"] border pixel 0
       gaps inner 10
-      gaps top 32
+      gaps top 36
     '';
     config = let
       merge_list_of_sets = cfgs: builtins.foldl' (a: b: a//b) {} cfgs; 
