@@ -17,6 +17,8 @@
     yt-dlp
     pinta
     gimp
+    wtf
+    vscode
     # 
     moreutils # sponge
     # 
