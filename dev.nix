@@ -5,8 +5,6 @@
     rustup
     rust-analyzer
     cargo-edit
-    clang
-    llvm
     (writeShellScriptBin "ar" "exec -a $0 ${llvm}/bin/llvm-ar $@")
     # Haskell
     stack
