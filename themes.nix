@@ -29,5 +29,14 @@
     qt5ct
   ];
 
+  dconf = {
+    enable = true;
+    settings = {
+      "org/gnome/desktop/interface" = {
+        "text-scaling-factor" = 1.25;
+      };
+    };
+  };
+
   home.file.".background-image".source = ./brady-bellini-WEQbe2jBg40-unsplash-adj.jpg;
 }

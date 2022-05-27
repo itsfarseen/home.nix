@@ -49,44 +49,44 @@ vim.cmd([[
 require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 
-	use 'arkav/lualine-lsp-progress'
+	use("arkav/lualine-lsp-progress")
 	-- Lualine {{{
-	use {
-		'nvim-lualine/lualine.nvim',
-		requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-		config = function ()
-			require('lualine').setup {
+	use({
+		"nvim-lualine/lualine.nvim",
+		requires = { "kyazdani42/nvim-web-devicons", opt = true },
+		config = function()
+			require("lualine").setup({
 				options = {
 					icons_enabled = true,
-					theme = 'nightfly',
-					component_separators = { left = '', right = ''},
-					section_separators = { left = '', right = ''},
+					theme = "nightfly",
+					component_separators = { left = "", right = "" },
+					section_separators = { left = "", right = "" },
 					disabled_filetypes = {},
 					always_divide_middle = true,
 					globalstatus = false,
 				},
 				sections = {
-					lualine_a = {'mode'},
-					lualine_b = {'branch', 'diff', 'diagnostics'},
-					lualine_c = {'filename', 'lsp_progress'},
-					lualine_x = {'encoding', 'fileformat', 'filetype'},
-					lualine_y = {'progress'},
-					lualine_z = {'location'}
+					lualine_a = { "mode" },
+					lualine_b = { "branch", "diff", "diagnostics" },
+					lualine_c = { "filename", "lsp_progress" },
+					lualine_x = { "encoding", "fileformat", "filetype" },
+					lualine_y = { "progress" },
+					lualine_z = { "location" },
 				},
 				inactive_sections = {
 					lualine_a = {},
 					lualine_b = {},
-					lualine_c = {'filename'},
-					lualine_x = {'location'},
+					lualine_c = { "filename" },
+					lualine_x = { "location" },
 					lualine_y = {},
-					lualine_z = {}
+					lualine_z = {},
 				},
 				tabline = {},
-				extensions = {}
-			}
-		end
-	}
-  --- }}}
+				extensions = {},
+			})
+		end,
+	})
+	--- }}}
 
 	-- File types
 	use({
@@ -113,13 +113,13 @@ require("packer").startup(function(use)
 
 	-- Color scheme {{{
 	use({
-			'folke/tokyonight.nvim',
-			config = function()
-				vim.g.tokyonight_transparent = false;
-				vim.g.tokyonight_dark_sidebar = true;
-				vim.g.tokyonight_style = "storm";
-				vim.cmd("colorscheme tokyonight")
-			end
+		"folke/tokyonight.nvim",
+		config = function()
+			vim.g.tokyonight_transparent = false
+			vim.g.tokyonight_dark_sidebar = true
+			vim.g.tokyonight_style = "storm"
+			vim.cmd("colorscheme tokyonight")
+		end,
 	})
 	-- }}}
 
@@ -135,9 +135,7 @@ require("packer").startup(function(use)
 	-- Rust
 	use({
 		"simrat39/rust-tools.nvim",
-		config = function()
-			require("rust-tools").setup({})
-		end,
+		config = function() end,
 	})
 	-- Lua formatter
 	use({ "ckipp01/stylua-nvim" })
@@ -147,16 +145,16 @@ require("packer").startup(function(use)
 
 	-- Handy extensions --
 
-	-- Buf Delete {{{ 
-	use({'famiu/bufdelete.nvim', 
-			config = function () 
-				vim.cmd([[
+	-- Buf Delete {{{
+	use({
+		"famiu/bufdelete.nvim",
+		config = function()
+			vim.cmd([[
 					nnoremap <leader>x :Bdelete<CR>
 				]])
-			end
+		end,
 	})
 	-- }}}
-
 
 	-- Git Signs {{{
 	use({
@@ -325,7 +323,7 @@ end
 -- }}}
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-	virtual_text = false,
+	virtual_text = true,
 	underline = true,
 	signs = true,
 })
@@ -333,7 +331,7 @@ vim.cmd([[
   set updatetime=300
 	augroup cursor_hover
 	autocmd!
-  autocmd CursorHold * lua vim.diagnostic.open_float({border = "single", focusable = false})
+  autocmd CursorHold * lua vim.diagnostic.open_float(nil, {border = "single", focusable = false})
   autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()
 	augroup end
 ]])
@@ -341,6 +339,8 @@ vim.cmd([[
 -- Key binds
 
 vim.cmd([[
+	inoremap jk <ESC>
+
   nnoremap <leader>l  :wincmd l <CR>
   nnoremap <leader>h  :wincmd h <CR>
   nnoremap <leader>k  :wincmd k <CR>
@@ -430,9 +430,14 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap("n", "<space>ff", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
+-- To highlight codefences returned from denols
+vim.g.markdown_fenced_languages = {
+  "ts=typescript"
+}
+
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "jedi_language_server", "tsserver", "jsonls", "sumneko_lua", "hls", "svelte" }
+local servers = { "jedi_language_server", "denols", "tsserver", "jsonls", "sumneko_lua", "hls", "svelte", "gopls" }
 local commonSetup = {
 	on_attach = on_attach,
 	capabilities = capabilities,
@@ -478,7 +483,7 @@ local specificSetup = {
 		},
 	},
 	hls = {
-		cmd = {"haskell-language-server", "--lsp"},
+		cmd = { "haskell-language-server", "--lsp" },
 		settings = {
 			haskell = { formattingProvider = "fourmolu" },
 		},
@@ -502,6 +507,11 @@ for _, lsp in ipairs(servers) do
 	end
 	nvim_lsp[lsp].setup(setupTable)
 end
+
+require("rust-tools").setup({
+	tools = { autoSetHints = true, inlay_hints = { only_current_line = false } },
+	server = { on_attach = on_attach },
+})
 
 vim.cmd([[
 	augroup FormatAutogroup
@@ -531,24 +541,24 @@ cmp.setup({
 			behavior = cmp.ConfirmBehavior.Replace,
 			select = true,
 		}),
-		["<Tab>"] = function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			elseif luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
-			else
-				fallback()
-			end
-		end,
-		["<S-Tab>"] = function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
-				luasnip.jump(-1)
-			else
-				fallback()
-			end
-		end,
+		-- ["<Tab>"] = function(fallback)
+		-- 	if cmp.visible() then
+		-- 		cmp.select_next_item()
+		-- 	elseif luasnip.expand_or_jumpable() then
+		-- 		luasnip.expand_or_jump()
+		-- 	else
+		-- 		fallback()
+		-- 	end
+		-- end,
+		-- ["<S-Tab>"] = function(fallback)
+		-- 	if cmp.visible() then
+		-- 		cmp.select_prev_item()
+		-- 	elseif luasnip.jumpable(-1) then
+		-- 		luasnip.jump(-1)
+		-- 	else
+		-- 		fallback()
+		-- 	end
+		-- end,
 	},
 	sources = {
 		{ name = "nvim_lsp" },
@@ -558,8 +568,7 @@ cmp.setup({
 })
 
 require("nvim-treesitter.configs").setup({
-	-- One of "all", "maintained" (parsers with maintainers), or a list of languages
-	ensure_installed = "maintained",
+	-- ensure_installed = "all",
 
 	-- Install languages synchronously (only applied to `ensure_installed`)
 	sync_install = false,

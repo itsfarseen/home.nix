@@ -3,8 +3,22 @@
 let
   #nixpkgs_unstable = import <nixpkgs-unstable> {};
   #pkgsx = nixpkgs_unstable.pkgs;
-in {
-  imports = [
+in { imports = [
+    ./shells.nix
+    ./aliases.nix
+    ./packages.nix
+    #
+    ./fonts.nix
+    ./dev.nix
+    ./xsettingsd.nix
+    # ./mold.nix
+    ./lld.nix
+    ./nix-direnv.nix
+    ./themes.nix
+    ./mime.nix
+    ./sccache.nix
+    ./gpg.nix
+    # apps
     ./apps/alacritty.nix 
     ./apps/i3.nix
     ./apps/polybar.nix
@@ -13,50 +27,18 @@ in {
     ./apps/sxhkd.nix
     ./apps/picom.nix
     ./apps/tmux.nix
-    ./fonts.nix
-    ./dev.nix
-    ./xsettingsd.nix
-     # ./mold.nix
-     ./lld.nix
-    ./nix-direnv.nix
-    ./themes.nix
-    ./mime.nix
-    ./aliases.nix
-    ./packages.nix
+    ./apps/git.nix
+    ./apps/deadd-notification-center
   ];
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfreePredicate = (pkg: true);
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "farseen";
   home.homeDirectory = "/home/farseen";
 
-  programs.bash.enable = true;
-  programs.fish.enable = true;
-  programs.z-lua.enable = true;
   programs.jq.enable = true;
-  programs.fzf.enable = true;
-  programs.starship.enable = true;
-  programs.git = {
-    enable = true;
-    ignores = [ "*~" "*.swp" ];
-    userName = "Farseen";
-    userEmail = "oss@itsfarseen.anonaddy.me";
-    delta.enable = true;
-    extraConfig = {
-      init.defaultBranch = "main";
-    };
-  };
-
-  dconf = {
-    enable = true;
-    settings = {
-      "org/gnome/desktop/interface" = {
-        "text-scaling-factor" = 1.25;
-      };
-    };
-  };
 
   xdg.configFile = {
     "discord/settings.json" = {
@@ -70,9 +52,11 @@ in {
   };
 
   services.parcellite.enable = true;
-  services.poweralertd.enable = true;
   services.kdeconnect.enable = true;
   services.kdeconnect.indicator = true;
+
+  home.packages = [ pkgs.poweralertd ];
+  services.poweralertd.enable = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
