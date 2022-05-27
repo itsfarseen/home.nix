@@ -1,18 +1,14 @@
 { config, pkgs, ... }:
-{
-  home.packages = with pkgs; [
+{ home.packages = with pkgs; [
     acpilight
     discord
-    slack
     tdesktop
     chromium
     firefox
     spotify
-    ytmdesktop
     libreoffice
     keepassxc
     pcmanfm
-    ferdi
     flameshot
     yt-dlp
     pinta
@@ -29,6 +25,11 @@
     # 
     imagemagick
     ghostscript
+    #
+    smplayer
+    vlc
+    mplayer
+    mpv
   ];
 
 }
