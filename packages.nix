@@ -13,10 +13,12 @@
     yt-dlp
     pinta
     gimp
+    inkscape
     wtf
     vscode
     # 
     moreutils # sponge
+    lxrandr
     # 
     gnome.eog
     gnome.file-roller
