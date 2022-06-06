@@ -20,7 +20,18 @@ in {
       i3GapsSupport = true;
       pulseSupport = true;
     };
-    script = "PATH=$PATH:${pkgs.i3-gaps}/bin polybar main &";
+    script = 
+    let 
+      xrandr = "${pkgs.xorg.xrandr}/bin/xrandr";
+      grep = "${pkgs.gnugrep}/bin/grep";
+      cut = "${pkgs.coreutils}/bin/cut";
+    in
+    ''
+      for monitor in $(${xrandr} --listactivemonitors | ${grep} -v "Monitors" | ${cut} -d" " -f6)
+      do
+        MONITOR=$monitor PATH=$PATH:${pkgs.i3-gaps}/bin polybar main &
+      done
+    '';
     settings = rec {
       colors = {
         background = "#ff1D202F";
@@ -31,6 +42,7 @@ in {
       };
 
       "bar/main" = {
+        monitor = "$\{env:MONITOR\}";
         enable-ipc = true;
         width = "100%";
         dpi = 120;
