@@ -5,6 +5,7 @@
     neovim
   ];
   xdg.configFile = {
-    "nvim/init.lua".source = ./init.lua;
+    "nvim/init.lua".source = config.lib.file.mkOutOfStoreSymlink (builtins.toString ./init.lua);
+    "nvim/lua".source = config.lib.file.mkOutOfStoreSymlink (builtins.toString ./lua);
   };
 }

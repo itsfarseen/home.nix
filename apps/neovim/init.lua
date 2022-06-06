@@ -1,6 +1,7 @@
--- vim:foldmethod=marker:
+-- xvim:foldmethod=marker:
 
 -- Auto reload {{{
+
 
 local cfg = vim.fn.stdpath("config")
 Flush = function()
@@ -46,47 +47,16 @@ vim.cmd([[
 ]])
 -- }}}
 
+local lualine = require("config.lualine")
+local rust = require("config.rust")
+local colorscheme = require("config.colorscheme")
+local on_attach = require("config.lsp-keybindings").on_attach;
+
 require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 
-	use("arkav/lualine-lsp-progress")
-	-- Lualine {{{
-	use({
-		"nvim-lualine/lualine.nvim",
-		requires = { "kyazdani42/nvim-web-devicons", opt = true },
-		config = function()
-			require("lualine").setup({
-				options = {
-					icons_enabled = true,
-					theme = "nightfly",
-					component_separators = { left = "", right = "" },
-					section_separators = { left = "", right = "" },
-					disabled_filetypes = {},
-					always_divide_middle = true,
-					globalstatus = false,
-				},
-				sections = {
-					lualine_a = { "mode" },
-					lualine_b = { "branch", "diff", "diagnostics" },
-					lualine_c = { "filename", "lsp_progress" },
-					lualine_x = { "encoding", "fileformat", "filetype" },
-					lualine_y = { "progress" },
-					lualine_z = { "location" },
-				},
-				inactive_sections = {
-					lualine_a = {},
-					lualine_b = {},
-					lualine_c = { "filename" },
-					lualine_x = { "location" },
-					lualine_y = {},
-					lualine_z = {},
-				},
-				tabline = {},
-				extensions = {},
-			})
-		end,
-	})
-	--- }}}
+	lualine.setup(use)
+	rust.setup(use)
 
 	-- File types
 	use({
@@ -111,32 +81,9 @@ require("packer").startup(function(use)
 	use("L3MON4D3/LuaSnip") -- Snippets plugin
 	-- }}}
 
-	-- Color scheme {{{
-	use({
-		"folke/tokyonight.nvim",
-		config = function()
-			vim.g.tokyonight_transparent = false
-			vim.g.tokyonight_dark_sidebar = true
-			vim.g.tokyonight_style = "storm"
-			vim.cmd("colorscheme tokyonight")
-		end,
-	})
-	-- }}}
+	colorscheme.setup(use)
 
 	-- Language Specific {{{
-	-- Rust Cargo.toml crates versions
-	use({
-		"saecki/crates.nvim",
-		requires = { "nvim-lua/plenary.nvim" },
-		config = function()
-			require("crates").setup()
-		end,
-	})
-	-- Rust
-	use({
-		"simrat39/rust-tools.nvim",
-		config = function() end,
-	})
 	-- Lua formatter
 	use({ "ckipp01/stylua-nvim" })
 	-- Flutter
@@ -303,7 +250,6 @@ vim.g.mapleader = " "
 vim.cmd("filetype indent on")
 -- }}}
 
-vim.g.rustfmt_autosave = 1
 vim.cmd([[set mouse=a]])
 
 -- Show documentation (K) {{{
@@ -320,6 +266,7 @@ function ShowDocumentation()
 		vim.lsp.buf.hover()
 	end
 end
+
 -- }}}
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -393,46 +340,10 @@ local handlers = {
 	["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
 }
 
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
-	local function buf_set_keymap(...)
-		vim.api.nvim_buf_set_keymap(bufnr, ...)
-	end
-	local function buf_set_option(...)
-		vim.api.nvim_buf_set_option(bufnr, ...)
-	end
-
-	-- Enable completion triggered by <c-x><c-o>
-	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-
-	-- Mappings.
-	local opts = { noremap = true, silent = true }
-
-	-- See `:help vim.lsp.*` for documentation on any of the below functions
-	buf_set_keymap("i", "<c-space>", "<c-x><c-o>", opts)
-	buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-	buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-	buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-	buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-	buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-	buf_set_keymap("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
-	buf_set_keymap("n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
-	--buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-	buf_set_keymap("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-	buf_set_keymap("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-	buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-	buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-	buf_set_keymap("n", "<space>d", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-	buf_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
-	buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
-	buf_set_keymap("n", "<space>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-	buf_set_keymap("n", "<space>ff", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-end
 
 -- To highlight codefences returned from denols
 vim.g.markdown_fenced_languages = {
-  "ts=typescript"
+	"ts=typescript"
 }
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
@@ -507,11 +418,6 @@ for _, lsp in ipairs(servers) do
 	end
 	nvim_lsp[lsp].setup(setupTable)
 end
-
-require("rust-tools").setup({
-	tools = { autoSetHints = true, inlay_hints = { only_current_line = false } },
-	server = { on_attach = on_attach },
-})
 
 vim.cmd([[
 	augroup FormatAutogroup
