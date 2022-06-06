@@ -12,7 +12,7 @@ in { imports = [
     ./dev.nix
     ./xsettingsd.nix
     # ./mold.nix
-    ./lld.nix
+    # ./lld.nix
     ./nix-direnv.nix
     ./themes.nix
     ./mime.nix
