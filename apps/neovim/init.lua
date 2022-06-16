@@ -422,7 +422,7 @@ end
 vim.cmd([[
 	augroup FormatAutogroup
 	autocmd!
-	autocmd BufWritePost * lua vim.lsp.buf.formatting_sync(nil, 1000)
+	autocmd BufWritePost * lua vim.lsp.buf.format()
 	augroup END
 ]])
 
