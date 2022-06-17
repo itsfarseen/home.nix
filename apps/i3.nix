@@ -161,6 +161,11 @@ in {
           always = true;
           notification = false;
         }
+        {
+          command = "xmodmap -e 'remove Lock Caps_Lock; keysym Caps_Lock = BackSpace'";
+          always = true;
+          notification = false;
+        }
       ];
 
       floating.criteria = [
