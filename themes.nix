@@ -4,6 +4,11 @@
     QT_QPA_PLATFORMTHEME = "qt5ct";
   };
 
+  home.pointerCursor = {
+    package = pkgs.capitaine-cursors;
+    name = "capitaine-cursors-white";
+  };
+
   gtk.enable = true;
   gtk.cursorTheme = {
     package = pkgs.capitaine-cursors;

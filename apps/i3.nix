@@ -41,11 +41,6 @@ in {
     lxqt.lxqt-config
   ];
 
-  xsession.pointerCursor = {
-    package = pkgs.capitaine-cursors;
-    name = "capitaine-cursors-white";
-  };
-
   xsession.windowManager.i3 = {
     enable = true;
     package = pkgs.i3-gaps; 
