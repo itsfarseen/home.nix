@@ -95,6 +95,11 @@ in {
         "${mod}+k" = "focus up";
         "${mod}+j" = "focus down";
 
+        "${mod}+Ctrl+h" = "move workspace to output left";
+        "${mod}+Ctrl+l" = "move workspace to output right";
+        "${mod}+Ctrl+k" = "move workspace to output up";
+        "${mod}+Ctrl+j" = "move workspace to output down";
+
         "${mod}+v" = "split v";
         "${mod}+Shift+v" = "split h";
 
