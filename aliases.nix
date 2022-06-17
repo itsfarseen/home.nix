@@ -42,5 +42,20 @@
   programs.fish.functions = {
     gdd = "git diff $argv[1]^ $argv[1]";
     gdh = "gdd HEAD";
+    zg = ''
+      if test (count $argv) -lt 2
+        zb;
+      else
+        zb;
+        zc $argv;
+      end
+    '';
   };
+
+  programs.z-lua.enable = true;
+  home.shellAliases = { 
+    "zc" = "z -c"; # z but only under $PWD
+    "zt" = "z -t"; # recent instead of frecent
+    "zb" = "z -b"; # search backwards
+  }; 
 }
