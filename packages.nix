@@ -16,6 +16,7 @@
     inkscape
     wtf
     vscode
+    tealdeer
     # 
     moreutils # sponge
     lxrandr
@@ -33,5 +34,4 @@
     mplayer
     mpv
   ];
-
 }
