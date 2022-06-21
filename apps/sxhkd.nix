@@ -1,5 +1,12 @@
 { config, pkgs, ... }:
-{
+let
+  cycle-monitor = pkgs.writeShellScriptBin "cycle-monitor" ''
+      XRANDR_OUTPUT=$(xrandr | grep '\<connected')
+      CONNECTED=$(echo "$XRANDR_OUTPUT" | grep mm | cut -d' ' -f 1 | head -n 1)
+      DISCONNECTED=$(echo "$XRANDR_OUTPUT" | grep -v mm | cut -d' ' -f 1 | head -n 1)
+      xrandr --output $CONNECTED --off --output $DISCONNECTED --auto
+  '';
+in {
   services.sxhkd = {
     enable = true;
 
@@ -13,6 +20,7 @@
       "super + w" = "chromium";
       "super + d" = "rofi -show drun -show-icons";
       "super + F3" = "pavucontrol";
+      "super + p" = "${cycle-monitor}/bin/cycle-monitor";
       "{XF86KbdBrightnessDown, XF86KbdBrightnessUp}" = "asusctl {-p,-n}";
     };
   };
