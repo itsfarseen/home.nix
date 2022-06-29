@@ -37,5 +37,6 @@ in
     nodePackages.typescript
     yarn
     typescript-language-server-fixed
+    nodePackages.vscode-json-languageserver
   ];
 }
