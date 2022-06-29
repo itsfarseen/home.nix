@@ -23,5 +23,9 @@ in
     # Lua
     sumneko-lua-language-server
     stylua
+    # JS/TS
+    nodejs-16_x
+    nodePackages.typescript
+    yarn
   ];
 }
