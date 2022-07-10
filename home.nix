@@ -11,12 +11,12 @@ in { imports = [
     ./fonts.nix
     ./dev.nix
     ./xsettingsd.nix
-    # ./mold.nix
+    ./mold.nix
     # ./lld.nix
     ./nix-direnv.nix
     ./themes.nix
     ./mime.nix
-    ./sccache.nix
+    #./sccache.nix
     ./gpg.nix
     # apps
     ./apps/alacritty.nix 
