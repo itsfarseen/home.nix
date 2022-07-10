@@ -145,27 +145,12 @@ in {
         }
       ];
 
-      startup = [
-        { 
-          command = "systemctl --user restart polybar"; 
-          always = true;
-          notification = false;
-        }
-        { 
-          command = "systemctl --user restart picom"; 
-          always = true;
-          notification = false;
-        }
-        { 
-          command = "pkill -SIGUSR1 sxhkd"; 
-          always = true;
-          notification = false;
-        }
-        {
-          command = "xmodmap -e 'remove Lock Caps_Lock; keysym Caps_Lock = BackSpace'";
-          always = true;
-          notification = false;
-        }
+      startup = map (cmd: { command = cmd; always = true; notification = false; } ) [
+        "systemctl --user restart polybar"
+        "systemctl --user restart picom"
+        "pkill -SIGUSR1 sxhkd"
+        "${pkgs.xorg.xmodmap}/bin/xmodmap -e 'remove Lock = BackSpace'"
+        "${pkgs.xorg.xmodmap}/bin/xmodmap -e 'keysym Caps_Lock = BackSpace'"
       ];
 
       floating.criteria = [
