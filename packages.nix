@@ -35,6 +35,7 @@ in {
     vscode
     tealdeer
     dml
+    bitwig-studio4
     # 
     moreutils # sponge
     lxrandr
