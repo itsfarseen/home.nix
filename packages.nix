@@ -34,6 +34,7 @@ in {
     wtf
     vscode
     tealdeer
+    dml
     # 
     moreutils # sponge
     lxrandr

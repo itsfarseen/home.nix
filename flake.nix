@@ -7,6 +7,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    dml-urwid.url = "github:itsfarseen/burns-mood-log-urwid";
   };
 
   outputs = { self, home-manager, ... }:
@@ -15,6 +16,9 @@
       username = "farseen";
       overlays = [
         self.inputs.neovim-nightly-overlay.overlay
+        (prev: final: rec {
+            dml = self.inputs.dml-urwid.packages.${system}.default;
+        })
       ];
     in {
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
