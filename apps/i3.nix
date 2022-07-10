@@ -165,10 +165,10 @@ in {
 
       modes = {
         resize = {
-          Left = "resize shrink width 10";
-          Right = "resize grow width 10";
-          Down = "resize shrink height 10";
-          Up = "resize grow height 10";
+          Left = "resize shrink width 20";
+          Right = "resize grow width 20";
+          Down = "resize shrink height 20";
+          Up = "resize grow height 20";
           Return = "mode default";
           Escape = "mode default";
         };
