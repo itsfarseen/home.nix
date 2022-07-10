@@ -348,7 +348,7 @@ vim.g.markdown_fenced_languages = {
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "jedi_language_server", "denols", "tsserver", "jsonls", "sumneko_lua", "hls", "svelte", "gopls" }
+local servers = { "jedi_language_server", "denols", "tsserver", "jsonls", "sumneko_lua", "hls", "svelte", "gopls" , "dhall_lsp_server"}
 local commonSetup = {
 	on_attach = on_attach,
 	capabilities = capabilities,
