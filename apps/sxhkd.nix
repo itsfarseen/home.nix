@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 let
-  cycle-monitor = pkgs.writeShellScriptBin "cycle-monitor" ''
+  writeShellScript = binary: contents: 
+    let pkg = pkgs.writeShellScriptBin binary contents;
+    in "${pkg}/bin/${binary}";
+  cycle-monitor = writeShellScript "cycle-monitor" ''
       XRANDR_OUTPUT=$(xrandr | grep '\<connected')
       CONNECTED=$(echo "$XRANDR_OUTPUT" | grep mm | cut -d' ' -f 1 | head -n 1)
       DISCONNECTED=$(echo "$XRANDR_OUTPUT" | grep -v mm | cut -d' ' -f 1 | head -n 1)
@@ -20,7 +23,7 @@ in {
       "super + w" = "chromium";
       "super + d" = "rofi -show drun -show-icons";
       "super + F3" = "pavucontrol";
-      "super + p" = "${cycle-monitor}/bin/cycle-monitor";
+      "super + p" = "${cycle-monitor}";
       "{XF86KbdBrightnessDown, XF86KbdBrightnessUp}" = "asusctl {-p,-n}";
     };
   };
