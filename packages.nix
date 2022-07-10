@@ -54,5 +54,6 @@ in {
     mpv
     #
     when-cli
+    pv
   ];
 }
