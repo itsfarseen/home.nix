@@ -24,6 +24,7 @@ in {
       "super + d" = "rofi -show drun -show-icons";
       "super + F3" = "pavucontrol";
       "super + p" = "${cycle-monitor}";
+      "super + s" = "flameshot gui";
       "{XF86KbdBrightnessDown, XF86KbdBrightnessUp}" = "asusctl {-p,-n}";
     };
   };
